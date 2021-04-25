@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <button class="button"> Change Color</button>
+
+        <div>
+            <input class="input" action="text"></input>
+            <button class="add">add</button>
+            <button class="delete">delete</button>
+            <table>
+                <tbody class="lista">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let ChangeColor = document.querySelector(".button");
+
+        function szín() {
+            let x = Math.floor(Math.random() * 256);
+            let y = Math.floor(Math.random() * 256);
+            let z = Math.floor(Math.random() * 256);
+            let RGBrandom = "rgb(" + x + "," + y + "," + z + ")";
+            ChangeColor.style.backgroundColor = RGBrandom;
+        };
+        ChangeColor.addEventListener('click', szín)
+        let Item = document.querySelector(".input");
+        let BtnAdd = document.querySelector(".add");
+        let BtnDelete = document.querySelector(".delete");
+        let number = 0;
+        let index = 0;
+
+        function Add() {
+            let mainList = document.querySelector(".lista");
+            let Row = document.createElement("tr");
+            let Number = document.createElement("td")
+            let Item = document.createElement("td");
+            number++;
+            mainList.appendChild(Row);
+            Number.textContent = number;
+            Row.appendChild(Number);
+            Item.textContent = Item.value;
+            Row.appendChild(Item);
+            Item.value = ("");
+            index++;
+        }
+        BtnAdd.addEventListener("click", Add)
+
+        function removeChild() {
+            if (index > 0) {
+                let mainList = document.querySelector(".lista");
+                let lastChild = mainList.lastChild;
+                mainList.removeChild(lastChild);
+                index--;
+                number--;
+            }
+        }
+        BtnDelete.addEventListener("click", removeChild);
+    </script>
+</body>
+
+</html>
